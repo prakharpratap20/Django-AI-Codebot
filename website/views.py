@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import openai
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm
 from .models import Code
 
 
+# Create your views here.
+
+
+# Home Page
 def home(request):
     lang_list = ['c', 'clike', 'cpp', 'csharp', 'css',
                  'dart', 'django', 'go', 'html', 'java',
@@ -200,4 +203,3 @@ def delete_past(request, Past_id):
     past.delete()
     messages.success(request, "Deleted Successfully...")
     return redirect('past')
-
