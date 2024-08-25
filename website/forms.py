@@ -4,6 +4,9 @@ from django import forms
 
 
 class SignUpForm(UserCreationForm):
+    """
+    This class is used to create a form for user registration.
+    """
     email = forms.EmailField(label="", widget=forms.TextInput(
         attrs={'class': 'form-control',
                'placeholder': "Email Address"}),)
@@ -17,11 +20,17 @@ class SignUpForm(UserCreationForm):
                                            'placeholder': 'Last Name'}))
 
     class Meta:
+        """
+        This class is used to define the fields of the form
+        """
         model = User
         fields = ('username', 'first_name', 'last_name',
                   'email', 'password1', 'password2',)
 
     def __init__(self, *args, **kwargs):
+        """
+        This function is used to initialize the form fields.
+        """
         super(SignUpForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs['class'] = 'form-control'

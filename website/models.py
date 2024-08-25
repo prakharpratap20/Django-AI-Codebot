@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 class Code(models.Model):
+    """
+    This class is used to create a model for code submission.
+    """
     user = models.ForeignKey(
         User, related_name="code", on_delete=models.DO_NOTHING)
     question = models.TextField(max_length=5000)

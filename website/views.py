@@ -9,8 +9,10 @@ from .models import Code
 # Create your views here.
 
 
-# Home Page
 def home(request):
+    """
+    This function is used to render the home page.
+    """
     lang_list = ['c', 'clike', 'cpp', 'csharp', 'css',
                  'dart', 'django', 'go', 'html', 'java',
                  'javascript', 'markup', 'markup-templating', 'matlab',
@@ -82,6 +84,9 @@ def home(request):
 
 
 def suggest(request):
+    """
+    This function is used to render the suggest page.
+    """
     lang_list = ['c', 'clike', 'cpp', 'csharp', 'css',
                  'dart', 'django', 'go', 'html', 'java',
                  'javascript', 'markup', 'markup-templating',
@@ -150,6 +155,9 @@ def suggest(request):
 
 
 def login_user(request):
+    """
+    This function is used to login the user.
+    """
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -166,12 +174,18 @@ def login_user(request):
 
 
 def logout_user(request):
+    """
+    This function is used to logout the user.
+    """
     logout(request)
     messages.success(request, "You Have Been Logged Out... Have A Nice Day!")
     return redirect('home')
 
 
 def register_user(request):
+    """
+    This function is used to register the user.
+    """
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -190,6 +204,9 @@ def register_user(request):
 
 
 def past(request):
+    """
+    This function is used to render the past page.
+    """
     if request.user.is_authenticated:
         code = Code.objects.filter(user_id=request.user.id)
         return render(request, 'past.html', {"code": code})
@@ -199,6 +216,9 @@ def past(request):
 
 
 def delete_past(request, Past_id):
+    """
+    This function is used to delete the past code.
+    """
     past = Code.objects.get(pk=Past_id)
     past.delete()
     messages.success(request, "Deleted Successfully...")
